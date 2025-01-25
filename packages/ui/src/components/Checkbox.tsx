@@ -8,7 +8,7 @@ interface CheckboxProps {
 export function Checkbox({id, type, label}: CheckboxProps){
     return(
         <div className='inline-flex items-center gap-2'>
-            <input type={type} data-state="checked" role='checkbox' id={id} className='w-4 h-4 accent-zinc-950 [&_svg]:stroke-red'/>
+            <input type={type} data-state="checked" role='checkbox' id={id} className='w-4 h-4 accent-zinc-950 [&_svg]'/>
             <label htmlFor={id}>{label}</label>
         </div>
     )
