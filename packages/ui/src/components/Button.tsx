@@ -5,6 +5,7 @@ interface ButtonProps {
   className?: string;
   variant?: "primary" | "secondary" | "ghost" | "danger" | "outline";
   disabled?: boolean;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 const variantStyles = {
   primary: "bg-zinc-950 text-white",
@@ -17,7 +18,7 @@ const typeStyles = {
   button:"",
   icon:"flex items-center justify-center [&_svg]:size-4 gap-2",
 }
-export function Button({ children, className, variant = "primary", disabled = false}: ButtonProps) {
+export function Button({ children, className, variant = "primary", disabled = false, onClick}: ButtonProps) {
   const variantClass = variantStyles[variant];
   const disabledClass = disabled ? "opacity-70 cursor-not-allowed" : "";
   const hasIcon = React.Children.toArray(children).some(
@@ -28,5 +29,5 @@ export function Button({ children, className, variant = "primary", disabled = fa
     ? "flex items-center justify-center [&_svg]:size-4 gap-2"
     : "inline-flex [&_svg]:size-4 items-center gap-2 [&_svg]:h-full";
 
-  return <button className={clsx(variantClass, iconClass,className, disabledClass, "cursor-pointer! px-4 py-2 rounded-md w-auto h-9 font-medium text-sm inline-flex")}>{children}</button>;
+  return <button className={clsx(variantClass, iconClass, className, disabledClass, "cursor-pointer! px-4 py-2 rounded-md w-auto h-9 font-medium text-sm inline-flex")} onClick={disabled ? undefined : onClick} disabled={disabled}>{children}</button>;
 }
