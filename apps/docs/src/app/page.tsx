@@ -1,9 +1,23 @@
 "use client";
-import React from 'react';
-import { Button, Input, Checkbox, PasswordAnimation, ProgressBar, Modal, Switch, Navbar, Flip, Badge, Select } from "@celest/ui";
+import React, { useState } from 'react';
+import { Button, Input, Checkbox, PasswordAnimation, ProgressBar, Modal, Switch, Navbar, Flip, Badge, Select, Radio, Tabs, Card, CardHeader, CardBody, CardFooter, Content, Alert, Tooltip } from "@celest/ui";
 import { ChevronRight } from 'lucide-react';
 import { motion } from "motion/react";
 export default function Home() {
+  const [selectedValue, setSelectedValue] = useState("option1");
+  const [activeTab, setActiveTab] = useState("login");
+  const [visible, setVisible] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const tabs = [
+    { label: "Log in", value: "login" },
+    { label: "Sign in", value: "signin" },
+    { label: "Register", value: "register" },
+  ];
+  const options = [
+    { value: "option1", label: "Option 1" },
+    { value: "option2", label: "Option 2" },
+    { value: "option3", label: "Option 3" },
+  ];
   return (
     <div className='w-full h-full bg-zinc-50'>
       <div>
@@ -83,9 +97,51 @@ export default function Home() {
         <div className='my-4'>
           <Badge variant="secondary">Nouveau Badge</Badge>
         </div>
+        <div className='my-4 container flex justify-center gap-8'>
+          <p>slt</p>
+          <div className="p-4">
+      <h1 className="text-lg font-semibold">Select an Option</h1>
+      <Radio
+        options={options}
+        name="example"
+        value={selectedValue}
+        onChange={(value) => setSelectedValue(value)}
+      />
+      <p className="mt-4">Selected: {selectedValue}</p>
+    </div>
+        </div>
+      </div>
+      <div className='my-4 w-full'>
+        <div className='container mx-auto flex justify-center'>
+          <div className='inline'> 
+            <Tabs tabs={tabs} onTabChange={(value) => setActiveTab(value)}>
+              <Content value='login' activeTab={activeTab}>
+                <Card>
+                  <CardHeader>pipi</CardHeader>
+                </Card>
+              </Content>
+            </Tabs>
+          </div>
+        </div>
+      </div>
+      <div className='my-4 w-full'>
+        <div className='container mx-auto flex justify-center'>
+          <Button onClick={() => setVisible(!visible)}>Alert</Button>
+          <Alert position='bottom-left' isVisible={visible} onClose={() => setVisible(false)}>
+            <div className="bg-green-100 border border-green-400 text-green-700 p-4 rounded">
+              <strong>Success!</strong> Your data has been saved.
+            </div>
+          </Alert>
+        </div>
+      </div>
+      <div className='my-32 w-full'>
+        <div className='container mx-auto flex justify-center h-20 items-center'>
+        <Tooltip value="Add to library">
+            <Button>Hover</Button>
+        </Tooltip>
+        </div>
       </div>
       <div className='w-full h-screen'>
-
       </div>
     </div>
   );

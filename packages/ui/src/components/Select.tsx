@@ -29,8 +29,8 @@ export function Select({ options, placeholder = "Select an option", onChange }: 
       {/* Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-left border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition bg-white ${
-          isOpen ? "ring-2 ring-blue-500" : ""
+        className={`flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-left border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-zinc-500 transition bg-white ${
+          isOpen ? "ring-2 ring-zinc-500" : ""
         }`}
       >
         <span>{selected ? selected.label : placeholder}</span>
